@@ -1,0 +1,51 @@
+
+// obliczanie wartości liczby stałoprzecinkowej
+// zapisanej w systemie pozycyjnym o podstawie
+// równej od 2 do 10
+
+//---------------------------------------------
+#include<stdio.h>
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+using namespace std;
+
+main()
+{
+    string s;
+    unsigned c, i, p, w;
+    bool u;
+    double L;
+    char z[1];
+
+    cout.precision(10);     // 10 cyfr po przecinku
+    cout.setf(ios::fixed);  // format stałoprzecinkowy
+
+    cout << "Obliczanie  wartosci  liczby staloprzecinkowej\n"
+        "zapisanej  w systemie pozycyjnym o podstawie p\n"
+
+        "Podaj p (2..10) = ";
+    cin >> p;
+    cout << "\nPodaj liczbe L  = ";
+    getline(cin, s);
+    getline(cin, s);
+    L = 0; w = p; u = false;
+    for (i = 0; i < s.length(); i++)
+    {
+        if (s[i] == ',')
+            u = true;
+        else
+        {
+            c = s[i] - int('0');
+            if (u)
+            {
+                L += double(c) / w; w *= p;
+            }
+            else L = L * p + c;
+        }
+    }
+    cout << endl << s << "(" << p << ") = " << L
+        << "\n\nNacisnij ENTER...\n";
+    cin.getline(z, 1);
+}
